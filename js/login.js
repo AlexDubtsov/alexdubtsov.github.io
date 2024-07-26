@@ -28,18 +28,12 @@ export function createLoginForm() {
     authorButton.type = 'button';
     authorButton.textContent = 'Author stats: Alex Dubtsov';
 
-    const errorMessage = document.createElement('p');
-    errorMessage.id = 'error-message';
-    errorMessage.textContent = 'Invalid login credentials';
-    errorMessage.style.display = 'none';
-
     // Appending the elements to the form
     form.appendChild(loginTitle);
     form.appendChild(usernameInput);
     form.appendChild(passwordInput);
     form.appendChild(loginButton);
     form.appendChild(authorButton);
-    form.appendChild(errorMessage);
 
     // Adding form to the body
     document.body.appendChild(form);
@@ -71,8 +65,9 @@ export function createLoginForm() {
             localStorage.setItem('jwt', token);
 
         } catch (error) {
-            errorMessage.textContent = error.message;
-            errorMessage.style.display = 'block';
+
+            alert("Invalid login credentials");
+
         }
 
         location.reload();
