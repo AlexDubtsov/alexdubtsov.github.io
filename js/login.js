@@ -24,15 +24,21 @@ export function createLoginForm() {
     loginButton.type = 'submit';
     loginButton.textContent = 'Login';
 
+    const authorButton = document.createElement('button');
+    authorButton.type = 'button';
+    authorButton.textContent = 'Author stats: Alex Dubtsov';
+
     const errorMessage = document.createElement('p');
     errorMessage.id = 'error-message';
     errorMessage.textContent = 'Invalid login credentials';
+    errorMessage.style.display = 'none';
 
     // Appending the elements to the form
     form.appendChild(loginTitle);
     form.appendChild(usernameInput);
     form.appendChild(passwordInput);
     form.appendChild(loginButton);
+    form.appendChild(authorButton);
     form.appendChild(errorMessage);
 
     // Adding form to the body
@@ -69,5 +75,16 @@ export function createLoginForm() {
             errorMessage.style.display = 'block';
         }
 
+        location.reload();
     });
+
+    // Adding event listener for authorButton click
+    authorButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        localStorage.setItem('jwt', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMTk2NjY3MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMDUzMDcxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiMDg3ZDA0NjItNjFlZC00OGE4LTk1NDEtZjA3NjM5MTZhYTFhIn19.pInKuyG6yfnVe7bZ8nnSFXJbADjPnmeXphOGHe8JNSE');
+
+        location.reload();
+    });
+
 }

@@ -1,48 +1,34 @@
 import { createLoginForm } from './login.js'
+import { fetchUserData } from './query.js'
+import { createStatPage } from './statPage.js'
 
-// Function to check if JWT is present and valid
-export async function checkJWT() {
-    const token = localStorage.getItem('jwt');
+// TO REMOVE EXISTING TOKEN
+// localStorage.removeItem('jwt');
 
-    if (!token) {
-        console.log('No JWT found in local storage');
-        return false;
-    }
+// TO ADD INVALID TOKEN
+// localStorage.setItem('jwt', 'a.pInKuyG6yfnVe7bZ8nnSFXJbADjPnmeXphOGHe8JNSE');
 
-    try {
-        const response = await fetch('https://01.kood.tech/api/auth/verify', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
+// Check if there is a token
+if (localStorage.getItem('jwt')) {
 
-        if (!response.ok) {
-            throw new Error('Token is invalid or server error');
-        }
+    // Check if the token is correct
+    const userData = await fetchUserData();
+    if (userData) {
 
-        const result = await response.json();
-        if (result.valid) {
-            console.log('JWT is valid');
-            return true;
-        } else {
-            console.log('JWT is invalid');
-            return false;
-        }
-    } catch (error) {
-        console.log('Error verifying JWT:', error.message);
-        return false;
-    }
-}
+        createStatPage(userData);
 
-// Example usage
-checkJWT().then(isValid => {
-    if (isValid) {
-        // Token is valid, proceed with authenticated actions
     } else {
 
-        createLoginForm();
+        localStorage.removeItem('jwt');
+        location.reload();
 
     }
-});
+
+} else {
+
+    createLoginForm();
+
+}
+
+// adubtsov token:
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMTk2NjY3MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMDUzMDcxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiMDg3ZDA0NjItNjFlZC00OGE4LTk1NDEtZjA3NjM5MTZhYTFhIn19.pInKuyG6yfnVe7bZ8nnSFXJbADjPnmeXphOGHe8JNSE
