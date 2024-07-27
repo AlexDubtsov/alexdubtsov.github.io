@@ -52,3 +52,32 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+#skillsGraph {
+    overflow: hidden; /* Ensure content does not overflow */
+    position: relative; /* Needed for absolute positioning */
+}
+
+#skillsGraph:hover .stats-svg {
+    transition: transform 0.1s ease-in-out; /* Smooth transition */
+}
+  
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2;
+}
+  
+.dot {
+  fill: red;
+}
+
+.label {
+  font-size: 12px;
+  fill: black;
+  user-select: none; /* Prevent text selection/highlighting */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer/Edge */
+}
+  

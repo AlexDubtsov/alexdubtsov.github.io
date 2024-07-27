@@ -62,6 +62,7 @@ export function createLoginForm() {
             if (!token) {
                 throw new Error('Token is missing in the response');
             }
+
             localStorage.setItem('jwt', token);
 
         } catch (error) {
@@ -77,7 +78,7 @@ export function createLoginForm() {
     authorButton.addEventListener('click', function(event) {
         event.preventDefault();
         
-        localStorage.setItem('jwt', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMTk2NjY3MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMDUzMDcxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiMDg3ZDA0NjItNjFlZC00OGE4LTk1NDEtZjA3NjM5MTZhYTFhIn19.pInKuyG6yfnVe7bZ8nnSFXJbADjPnmeXphOGHe8JNSE');
+        localStorage.setItem('jwt', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMjA1NTE0MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMTQxNTQxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiNTAxNWJiZTYtOTkwNi00ODU1LWJmZjctZmRmMjEzYTQxYzU0In19.yqG-oVi6Ysv4T-T12XSkw1nS9La5HCMEtJjEAa2Zcl8');
 
         location.reload();
     });

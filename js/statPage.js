@@ -1,5 +1,11 @@
+import { drawSkillGraph } from './svg.js';
+
 // Function to create and display the statistics page
 export function createStatPage(userData) {
+
+    // Print the token to console
+    console.log('token:');
+    console.log(localStorage.getItem('jwt'));
 
     // Creating the page DIV
     const page = document.createElement('div');
@@ -84,13 +90,24 @@ export function createStatPage(userData) {
     // Adding contents to the body
     document.body.appendChild(page);
 
-    console.log(userData);
+    // Drawing the skill graph inside the skillsGraph div
+    drawSkillGraph(userData, 'skillsGraph');
 
     // Adding event listener for logoutButton click
     logoutButton.addEventListener('click', function(event) {
         event.preventDefault();
         localStorage.removeItem('jwt');
         location.reload();
+    });
+
+    const container = document.getElementById('skillsGraph');
+
+    container.addEventListener('mouseover', () => {
+        mouseHover(true);
+    });
+
+    container.addEventListener('mouseout', () => {
+        mouseHover(false);
     });
 }
 
@@ -102,4 +119,54 @@ function xpCalc (userData) {
         });
     }
     return xpSum;
+}
+
+function mouseHover(switchOn) {
+    // Smooth movement part
+    const speedFactor = 0.1;
+    let scale = 1;
+
+    if (switchOn) {
+        scale = 3;
+    } else {
+        scale = 1;
+    }
+
+    const skillsGraph = document.getElementById('skillsGraph');
+    const svg = d3.select('#skillsGraph .stats-svg');
+
+    let currentOffsetX = 0;
+    let currentOffsetY = 0;
+    let targetOffsetX = 0;
+    let targetOffsetY = 0;
+
+    // Helper function to update the SVG transform smoothly
+    function updateTransform() {
+        currentOffsetX += (targetOffsetX - currentOffsetX) * speedFactor;
+        currentOffsetY += (targetOffsetY - currentOffsetY) * speedFactor;
+
+        svg.style('transform', `scale(${scale}) translate(${-currentOffsetX}px, ${-currentOffsetY}px)`);
+
+        requestAnimationFrame(updateTransform);
+    }
+
+    // Start the animation loop
+    requestAnimationFrame(updateTransform);
+
+    // Scaling part
+    // Add event listeners to the parent div for mouse movement
+    skillsGraph.addEventListener('mousemove', (event) => {
+        const rect = skillsGraph.getBoundingClientRect();
+        const x = event.clientX - rect.left; // x position within the element
+        const y = event.clientY - rect.top;  // y position within the element
+
+        // Calculate the percentage position within the element
+        const xPercent = x / rect.width;
+        const yPercent = y / rect.height;
+
+        // Calculate target offsets
+        targetOffsetX = ((xPercent - 0.5) * (scale - 1) * rect.width);
+        targetOffsetY = ((yPercent - 0.5) * (scale - 1) * rect.height);
+    });
+
 }
