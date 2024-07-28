@@ -78,7 +78,7 @@ export function createLoginForm() {
     authorButton.addEventListener('click', function(event) {
         event.preventDefault();
         
-        localStorage.setItem('jwt', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMjA1NTE0MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMTQxNTQxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiNTAxNWJiZTYtOTkwNi00ODU1LWJmZjctZmRmMjEzYTQxYzU0In19.yqG-oVi6Ysv4T-T12XSkw1nS9La5HCMEtJjEAa2Zcl8');
+        localStorage.setItem('jwt', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDI1MSIsImlhdCI6MTcyMjE0MzQ1MSwiaXAiOiIxNzIuMjMuMC4yIiwiZXhwIjoxNzIyMjI5ODUxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMDI1MSIsIngtaGFzdXJhLXRva2VuLWlkIjoiODNlYWVlZDEtYzFjOC00ZTQ0LTg2ZmQtNGU0MTNlMWM3NzAzIn19.9tgXKn36WY8WKPMvWoCvenoyGS-XrI_y3mFE7ABmspw');
 
         location.reload();
     });

@@ -29,7 +29,7 @@
     margin: 10px;
 }
 
-#skillsGraph, #auditGraph {
+#skillsGraph, #skillCircle {
     width: 45%;
     height: 65%;
     display: flex;
@@ -40,6 +40,13 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border: 1px solid #28a745;
     margin: 10px;
+}
+
+#skillBasicSVG {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
 #userInfo button {

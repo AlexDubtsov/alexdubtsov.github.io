@@ -1,4 +1,6 @@
-import { drawSkillGraph } from './svg.js';
+import { drawXPGraph } from './xpGraph.js';
+import { mouseHover } from './xpGraph.js';
+import { drawSkillCircle } from './skillCircle.js';
 
 // Function to create and display the statistics page
 export function createStatPage(userData) {
@@ -26,8 +28,12 @@ export function createStatPage(userData) {
     const skillsGraph = document.createElement('div');
     skillsGraph.id = 'skillsGraph';
     //#4
-    const auditGraph = document.createElement('div');
-    auditGraph.id = 'auditGraph';
+    const skillCircle = document.createElement('div');
+    skillCircle.id = 'skillCircle';
+
+    const skillBasicSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    skillBasicSVG.id = 'skillBasicSVG';
+    skillCircle.appendChild(skillBasicSVG);
 
     // Creating DIV#1 content
     const userLogin = document.createElement('h2');
@@ -82,7 +88,7 @@ export function createStatPage(userData) {
     crossContainer.appendChild(userInfo);
     crossContainer.appendChild(xpInfo);
     crossContainer.appendChild(skillsGraph);
-    crossContainer.appendChild(auditGraph);
+    crossContainer.appendChild(skillCircle);
 
     // Appending the cross container to the page
     page.appendChild(crossContainer);
@@ -91,7 +97,10 @@ export function createStatPage(userData) {
     document.body.appendChild(page);
 
     // Drawing the skill graph inside the skillsGraph div
-    drawSkillGraph(userData, 'skillsGraph');
+    drawXPGraph(userData, 'skillsGraph');
+
+    // Drawing the skill circle #1 inside the skillCircle div
+    drawSkillCircle(userData, 'skillBasicSVG');
 
     // Adding event listener for logoutButton click
     logoutButton.addEventListener('click', function(event) {
@@ -111,6 +120,7 @@ export function createStatPage(userData) {
     });
 }
 
+// Helper function for calculating total amount of XP
 function xpCalc (userData) {
     let xpSum = 0;
     if (userData) {
@@ -119,54 +129,4 @@ function xpCalc (userData) {
         });
     }
     return xpSum;
-}
-
-function mouseHover(switchOn) {
-    // Smooth movement part
-    const speedFactor = 0.1;
-    let scale = 1;
-
-    if (switchOn) {
-        scale = 3;
-    } else {
-        scale = 1;
-    }
-
-    const skillsGraph = document.getElementById('skillsGraph');
-    const svg = d3.select('#skillsGraph .stats-svg');
-
-    let currentOffsetX = 0;
-    let currentOffsetY = 0;
-    let targetOffsetX = 0;
-    let targetOffsetY = 0;
-
-    // Helper function to update the SVG transform smoothly
-    function updateTransform() {
-        currentOffsetX += (targetOffsetX - currentOffsetX) * speedFactor;
-        currentOffsetY += (targetOffsetY - currentOffsetY) * speedFactor;
-
-        svg.style('transform', `scale(${scale}) translate(${-currentOffsetX}px, ${-currentOffsetY}px)`);
-
-        requestAnimationFrame(updateTransform);
-    }
-
-    // Start the animation loop
-    requestAnimationFrame(updateTransform);
-
-    // Scaling part
-    // Add event listeners to the parent div for mouse movement
-    skillsGraph.addEventListener('mousemove', (event) => {
-        const rect = skillsGraph.getBoundingClientRect();
-        const x = event.clientX - rect.left; // x position within the element
-        const y = event.clientY - rect.top;  // y position within the element
-
-        // Calculate the percentage position within the element
-        const xPercent = x / rect.width;
-        const yPercent = y / rect.height;
-
-        // Calculate target offsets
-        targetOffsetX = ((xPercent - 0.5) * (scale - 1) * rect.width);
-        targetOffsetY = ((yPercent - 0.5) * (scale - 1) * rect.height);
-    });
-
 }
