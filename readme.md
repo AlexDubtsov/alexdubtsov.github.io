@@ -6,6 +6,8 @@
 
 # Hey, kood/Student!
 
-Want to check your kood/Jõhvi stats? And my?
+Want to check your kood/Jõhvi stats?
 
-Open [the link](https://alexdubtsov.github.io/) and compare!
+Open [the link](https://alexdubtsov.github.io/)
+
+shhhhhh...... there is secret token in Intra version or the repo. can you find it?
