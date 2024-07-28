@@ -24,9 +24,9 @@ export function createLoginForm() {
     loginButton.type = 'submit';
     loginButton.textContent = 'Login';
 
-    const authorButton = document.createElement('button');
-    authorButton.type = 'button';
-    authorButton.textContent = 'Author stats: Alex Dubtsov';
+    // const authorButton = document.createElement('button');
+    // authorButton.type = 'button';
+    // authorButton.textContent = 'Author stats: Alex Dubtsov';
 
     // Appending the elements to the form
     form.appendChild(loginTitle);
