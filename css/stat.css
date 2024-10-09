@@ -1,0 +1,90 @@
+#statPage {
+    width: 100%;
+    height: 99%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#crossContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#userInfo, #xpInfo {
+    width: 45%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #28a745;
+    margin: 10px;
+}
+
+#skillsGraph, #skillCircle {
+    width: 45%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #28a745;
+    margin: 10px;
+}
+
+#skillBasicSVG {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#userInfo button {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#skillsGraph {
+    overflow: hidden; /* Ensure content does not overflow */
+    position: relative; /* Needed for absolute positioning */
+}
+
+#skillsGraph:hover .stats-svg {
+    transition: transform 0.1s ease-in-out; /* Smooth transition */
+}
+  
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2;
+}
+  
+.dot {
+  fill: red;
+}
+
+.label {
+  font-size: 12px;
+  fill: black;
+  user-select: none; /* Prevent text selection/highlighting */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer/Edge */
+}
+  
